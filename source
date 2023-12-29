@@ -1,0 +1,158 @@
+
+Recent
+Hệ thống CodeGym
+English ‎(en)‎
+Enter your search query
+Notifications
+
+You have no notifications
+See all
+Thống Nguyễn Đình
+
+SECTIONS
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+
+Skip to main content
+[BC-JAVA-APJ] Advanced Programming with Java 2.1
+Dashboard
+My courses
+ BC-JAVA-APJ_2.1
+ 17. IO: Binary File & Serialization
+ [Thực hành] Copy các file có dung lượng lớn
+[Thực hành] Copy các file có dung lượng lớn
+Mục tiêu
+Luyện tập làm việc với file binary.
+
+Mô tả
+- Viết một ứng dụng cho phép copy các file có dung lượng lớn.
+
+- Ứng dụng cho phép nhập vào đường dẫn của file nguồn, đường dẫn của thư mục đích và sao chép file nguồn sang thư mục đích.
+
+Hướng dẫn
+Bước 1: Tạo class Main. Trong lớp Main tạo 2 phương thức private static
+
+private static void copyFileUsingJava7Files(File source, File dest)
+private static void copyFileUsingStream(File source, File dest)
+Bước 2: Cài đặt phương thức copyFileUsingJava7Files
+
+- Copy file sử dụng Java7 - class Files
+
+private static void copyFileUsingJava7Files(File source, File dest) throws IOException {
+    Files.copy(source.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+}
+Bước 3: Cài đặt phương thức copyFileUsingStream
+
+- Copy file sử dụng streams
+
+private static void copyFileUsingStream(File source, File dest) throws IOException {
+    InputStream is = null;
+    OutputStream os = null;
+    try {
+        is = new FileInputStream(source);
+        os = new FileOutputStream(dest);
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = is.read(buffer)) > 0) {
+            os.write(buffer, 0, length);
+        }
+    } finally {
+        is.close();
+        os.close();
+    }
+}
+Bước 4: Tạo method main(String[] args) cho phép nhập vào đường dẫn của file nguồn, đường dẫn của thư mục đích và gọi 2 method trên và kiểm tra kết quả
+
+public static void main(String[] args) {
+    Scanner in = new Scanner(System.in);
+
+    System.out.printf("Enter source file:");
+    String sourcePath = in.nextLine();
+    System.out.printf("Enter destination file:");
+    String destPath = in.nextLine();
+
+    File sourceFile = new File(sourcePath);
+    File destFile = new File(destPath);
+
+    try {
+        //thay đổi lần lượt 2 method để thấy kết quả
+        copyFileUsingJava7Files(sourceFile, destFile);
+        //copyFileUsingStream(sourceFile, destFile);
+        System.out.printf("Copy completed");
+    } catch (IOException ioe) {
+        System.out.printf("Can't copy that file");
+        System.out.printf(ioe.getMessage());
+    }
+}
+Bước 5: Chạy chương trình và quan sát kết quả
+
+Output:
+
+Trường hợp copy file thành công (file name thay đổi tùy theo file của học viên)
+        Enter source file:D:\Source\TestSite.rar
+
+        Enter destination file:D:\Source\Java\TestOuput.rar
+
+        Copy completed
+
+Trường hợp copy file thất bại
+        Enter source file:try copy
+
+        Enter destination file:try copy
+
+        Can't copy that file try copy
+
+Checkout sang nhánh develop để xem mã nguồn tham khảo: https://github.com/codegym-vn/apj-copy-file
+
+Hướng dẫn nộp bài:
+Up bài tập lên github
+
+Paste link github vào phần nộp bài
+
+Submission status
+Submission status	No attempt
+Grading status	Not graded
+Last modified	-
+Submission comments
+Comments (0)
+You have not made a submission yet.
+Jump to...
+Jump to...
+CHƯƠNG TRÌNH
+Career
+Premium
+Accelerator
+TÀI NGUYÊN
+Blog
+Tạp chí Lập trình
+AgileBreakfast
+Follow Us
+
+
+CodeGym@2018. All rights reserved.
+You are logged in as Thống Nguyễn Đình (Log out)
